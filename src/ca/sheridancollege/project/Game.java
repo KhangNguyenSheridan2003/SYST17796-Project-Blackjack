@@ -2,6 +2,10 @@
  * SYST 17796 Project Base code.
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
+ * 
+ * @author dancye
+ * @author Paul Bonenfant Jan 2020
+ * @author Solo Creator Team - November 2025
  */
 package ca.sheridancollege.project;
 
@@ -10,9 +14,6 @@ import java.util.ArrayList;
 /**
  * The class that models your game. You should create a more specific child of this class and instantiate the methods
  * given.
- *
- * @author dancye
- * @author Paul Bonenfant Jan 2020
  */
 public abstract class Game {
 
@@ -21,7 +22,7 @@ public abstract class Game {
 
     public Game(String name) {
         this.name = name;
-        players = new ArrayList();
+        players = new ArrayList<>();
     }
 
     /**

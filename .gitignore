@@ -12,3 +12,30 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.toptal.com/developers/gitignore/api/netbeans
+
+# ===========================
+# Extra rules for team safety
+# ===========================
+
+# Ignore user-specific and environment files
+**/nbproject/project.properties
+**/nbproject/private/
+
+# Ignore build outputs (generated files)
+build/
+dist/
+
+# Ignore OS and IDE temporary files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+
+# Ignore NetBeans cache folders
+.nb-gradle/
+.nb-build/
+
+# Ensure no IDE metadata from NetBeans or VSCode gets pushed
+.vscode/
+.idea/

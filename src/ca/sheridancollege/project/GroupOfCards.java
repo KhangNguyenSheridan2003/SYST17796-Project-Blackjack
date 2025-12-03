@@ -2,6 +2,10 @@
  * SYST 17796 Project Base code.
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
+ * 
+ * @author dancye
+ * @author Paul Bonenfant Jan 2020
+ * @author Solo Creator Team - November 2025
  */
 package ca.sheridancollege.project;
 
@@ -11,9 +15,6 @@ import java.util.Collections;
 /**
  * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
  * once. The group of cards has a maximum size attribute which is flexible for reuse.
- *
- * @author dancye
- * @author Paul Bonenfant Jan 2020
  */
 public class GroupOfCards {
 
@@ -23,6 +24,7 @@ public class GroupOfCards {
 
     public GroupOfCards(int size) {
         this.size = size;
+        this.cards = new ArrayList<>();
     }
 
     /**
@@ -32,6 +34,15 @@ public class GroupOfCards {
      */
     public ArrayList<Card> getCards() {
         return cards;
+    }
+    
+    /**
+     * Sets the cards in this group.
+     * 
+     * @param cards the ArrayList of cards to set
+     */
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 
     public void shuffle() {
