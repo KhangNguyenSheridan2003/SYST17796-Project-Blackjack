@@ -21,6 +21,7 @@ public class BlackjackGame extends Game {
     private ArrayList<BlackjackPlayer> blackjackPlayers;
     private int roundNumber;
     private Scanner scanner;
+    private Boolean blackjackOccurred;
     
     // Game settings
     public static final int WINNING_POINTS = 200;   // Win condition
@@ -36,6 +37,7 @@ public class BlackjackGame extends Game {
         this.blackjackPlayers = new ArrayList<>();
         this.roundNumber = 0;
         this.scanner = new Scanner(System.in);
+        this.blackjackOccurred = false;
     }
     
     /**
@@ -125,12 +127,11 @@ public class BlackjackGame extends Game {
             // Deal initial cards
             dealInitialCards();
             
-            // Check for dealer Blackjack
-            if (dealer.hasBlackjack()) {
-                System.out.println("\n*** Dealer has BLACKJACK! ***");
-                showAllHands();
-                resolveRound();
-            } else {
+            //Check for blackjack
+
+            
+            // If there is a blackjack
+            if (!checkBlackjackOccurrence()) {
                 // Player turns
                 for (BlackjackPlayer player : blackjackPlayers) {
                     if (player.hasPoints()) {
@@ -168,6 +169,28 @@ public class BlackjackGame extends Game {
         for (BlackjackPlayer player : blackjackPlayers) {
             player.resetForNewRound();
         }
+    }
+    
+    /*
+    *
+    */
+    
+    private Boolean checkBlackjackOccurrence(){
+        Boolean dealerBlackjack = dealer.hasBlackjack();
+        Boolean playerBlackjack = false;
+        for (BlackjackPlayer player: blackjackPlayers) 
+            playerBlackjack |= player.hasBlackjack();
+        
+        if (dealerBlackjack | playerBlackjack){
+            if (dealerBlackjack && playerBlackjack)
+                System.out.println("\n*** Dealer and Player has BLACKJACK! ***");
+            else
+                System.out.println(dealerBlackjack ? "\n*** Dealer has BLACKJACK! ***" : "\n***Player has BLACKJACK! ***");
+            showAllHands();
+            resolveRound();
+            return true;
+        }
+        return false;
     }
     
     /**
