@@ -362,8 +362,10 @@ public class BlackjackGame extends Game {
             String result;
             int pointsChange;
             
-            if (playerBusted) {
-                // Player busted - loses bet
+            if ((playerBusted && !dealerBusted) || 
+                    ((playerBusted && dealerBusted) && (player.getHandValue() > dealer.getHandValue()))
+                    ) {
+                // Player busted or both player and dealer busted but player hand has higher value - loses bet
                 result = "LOSE (Busted)";
                 pointsChange = -bet;
             } else if (dealerBlackjack && !playerBlackjack) {
@@ -374,8 +376,10 @@ public class BlackjackGame extends Game {
                 // Player has blackjack, dealer doesn't - 3:2 payout
                 result = "WIN (Blackjack!)";
                 pointsChange = (int)(bet * BLACKJACK_PAYOUT);
-            } else if (dealerBusted) {
-                // Dealer busted - player wins
+            } else if ((dealerBusted && !playerBusted) || 
+                        ((dealerBusted && playerBusted) && (dealer.getHandValue() > player.getHandValue()))
+                    ) {
+                // Dealer busted or both dealer and player busted but dealer hand has higher value - player wins
                 result = "WIN (Dealer Busted)";
                 pointsChange = bet;
             } else if (playerValue > dealerValue) {
