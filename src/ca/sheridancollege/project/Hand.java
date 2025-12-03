@@ -24,19 +24,11 @@ public class Hand extends GroupOfCards {
     }
     
     /**
-     * Adds a card to this hand.
-     * 
-     * @param card the card to add
-     */
-    public void addCard(Card card) {
-        getCards().add(card);
-    }
-    
-    /**
      * Clears all cards from this hand.
      */
     public void clear() {
-        getCards().clear();
+        this.getCards().clear();
+        this.setSize(0);
     }
     
     /**
@@ -50,7 +42,7 @@ public class Hand extends GroupOfCards {
         int value = 0;
         int aceCount = 0;
         
-        for (Card card : getCards()) {
+        for (Card card : this.getCards()) {
             BlackjackCard bjCard = (BlackjackCard) card;
             value += bjCard.getValue();
             if (bjCard.isAce()) {
@@ -73,7 +65,7 @@ public class Hand extends GroupOfCards {
      * @return true if hand value exceeds 21
      */
     public boolean isBusted() {
-        return getValue() > 21;
+        return this.getValue() > 21;
     }
     
     /**
@@ -82,7 +74,7 @@ public class Hand extends GroupOfCards {
      * @return true if this is a natural Blackjack
      */
     public boolean isBlackjack() {
-        return getCards().size() == 2 && getValue() == 21;
+        return this.getSize() == 2 && getValue() == 21;
     }
     
     /**
@@ -91,16 +83,7 @@ public class Hand extends GroupOfCards {
      * @return the number of cards
      */
     public int getCardCount() {
-        return getCards().size();
-    }
-    
-    /**
-     * Checks if this hand is empty.
-     * 
-     * @return true if no cards in hand
-     */
-    public boolean isEmpty() {
-        return getCards().isEmpty();
+        return this.getSize();
     }
     
     /**
@@ -110,7 +93,7 @@ public class Hand extends GroupOfCards {
      */
     @Override
     public String toString() {
-        if (getCards().isEmpty()) {
+        if (this.isEmpty()) {
             return "[Empty Hand]";
         }
         

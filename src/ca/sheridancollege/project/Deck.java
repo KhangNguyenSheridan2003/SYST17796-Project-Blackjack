@@ -33,42 +33,24 @@ public class Deck extends GroupOfCards {
         // Create all 52 cards (4 suits × 13 ranks)
         for (BlackjackCard.Suit suit : BlackjackCard.Suit.values()) {
             for (BlackjackCard.Rank rank : BlackjackCard.Rank.values()) {
-                cards.add(new BlackjackCard(suit, rank));
+                this.addCard(new BlackjackCard(suit, rank));
             }
         }
-        
-        setCards(cards);
-        shuffle();
+        this.shuffle();
     }
     
-    /**
+         /**
      * Draws (removes and returns) the top card from the deck.
      * 
      * @return the top card, or null if deck is empty
      */
     public Card draw() {
-        if (isEmpty()) {
+        if (this.isEmpty()) {
+            System.out.println("Error: Deck is empty");
             return null;
         }
-        return getCards().remove(0);
-    }
-    
-    /**
-     * Checks if the deck is empty.
-     * 
-     * @return true if no cards remain in the deck
-     */
-    public boolean isEmpty() {
-        return getCards() == null || getCards().isEmpty();
-    }
-    
-    /**
-     * Gets the number of cards remaining in the deck.
-     * 
-     * @return the number of remaining cards
-     */
-    public int cardsRemaining() {
-        return getCards() == null ? 0 : getCards().size();
+        this.increaseSize();
+        return this.getCards().remove(0);
     }
     
     /**
@@ -78,6 +60,6 @@ public class Deck extends GroupOfCards {
      */
     @Override
     public String toString() {
-        return "Deck: " + cardsRemaining() + " cards remaining";
+        return "Deck: " + this.getSize() + " cards remaining";
     }
 }

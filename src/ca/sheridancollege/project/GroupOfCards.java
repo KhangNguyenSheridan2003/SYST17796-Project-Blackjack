@@ -20,10 +20,11 @@ public class GroupOfCards {
 
     //The group of cards, stored in an ArrayList
     private ArrayList<Card> cards;
+    private final int maxSize;
     private int size;//the size of the grouping
 
     public GroupOfCards(int size) {
-        this.size = size;
+        this.maxSize = size;
         this.cards = new ArrayList<>();
     }
 
@@ -42,25 +43,59 @@ public class GroupOfCards {
      * @param cards the ArrayList of cards to set
      */
     public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
+        if (cards.size() > this.maxSize)
+            System.out.println("Error: Size of input is larger than max size of group of card");
+        else {
+            this.cards = cards;
+            this.size = cards.size();
+        }
     }
-
+    
+     /**
+     * Add a new card to this group.
+     * 
+     * @param card the ArrayList of cards to set
+     */
+    public void addCard(Card card){
+        if (this.cards.size() == this.maxSize)
+            System.out.println("Error: Cannot add more cards, group of card size is maxed out");
+        else{
+            this.cards.add(card);
+            this.size++;
+        }
+    }
+    
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
     /**
-     * @return the size of the group of cards
+     * Checks if the deck is empty.
+     * 
+     * @return true if no cards remain in the deck
      */
-    public int getSize() {
-        return size;
+    public boolean isEmpty() {
+        return getCards() == null;
     }
-
-    /**
-     * @param size the max size for the group of cards
+    
+     /**
+     * Get current size of the group of card.
+     * 
+     * @return number of card in the group of card
      */
-    public void setSize(int size) {
+    public int getSize(){
+        return this.size;
+    }
+    
+    public void setSize(int size){
         this.size = size;
     }
-
+    
+    public void increaseSize(){
+        this.size++;
+    }
+    
+    public int getMaxSize(){
+        return this.maxSize;
+    }
 }//end class

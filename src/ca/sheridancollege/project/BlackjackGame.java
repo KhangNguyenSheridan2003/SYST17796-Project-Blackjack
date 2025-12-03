@@ -111,7 +111,7 @@ public class BlackjackGame extends Game {
             resetRound();
             
             // Check if deck needs reshuffling
-            if (deck.cardsRemaining() < 15) {
+            if (deck.getSize() < 15) {
                 System.out.println("Reshuffling deck...\n");
                 deck.reset();
             }
